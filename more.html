@@ -125,12 +125,27 @@ button {
 
   </style>
 <script>
-  const res = await fetch("https://your-app-name.onrender.com/ask-gemini", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ prompt: input })
-});
+  async function askGemini() {
+    const input = document.getElementById('userInput').value;
+    const responseEl = document.getElementById('chatResponse');
+    responseEl.innerText = "Thinking...";
 
+    try {
+      const res = await fetch("https://render-q4hz.onrender.com/ask-gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: input })
+      });
+
+
+
+      const data = await res.json();
+      responseEl.innerText = data.reply || "Sorry, I couldn't answer that.";
+    } catch (err) {
+      console.error(err);
+      responseEl.innerText = "Something went wrong. Please try again later.";
+    }
+  }
   </script>
   
 
