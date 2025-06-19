@@ -1,0 +1,60 @@
+from zipfile import ZipFile
+import os
+
+# Define the HTML files content (example placeholders, already included in full previously)
+index_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RaymondX | About</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo"><a href="index.html">RaymondX</a></div>
+    <ul>
+      <li><a href="index.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="more.html">More</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="profile-pic">
+      <img src="sky.jpg" alt="RaymondX" />
+    </div>
+    <div class="active-indicator"></div>
+    <h1>Welcome to RaymondX's Portfolio</h1>
+    <p>I am passionate about creating sleek web experiences and dynamic interfaces.</p>
+  </div>
+  <footer>&copy; 2025 RaymondX. All Rights Reserved.</footer>
+</body>
+</html>
+"<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RaymondX | Projects</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo"><a href="index.html">RaymondX</a></div>
+    <ul>
+      <li><a href="index.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="more.html">More</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <h1>My Projects</h1>
+    <p>Live demo of my portfolio is one of the projects.</p>
+    <iframe src="index.html" width="100%" height="500px"></iframe>
+  </div>
+  <footer>&copy; 2025 RaymondX. All Rights Reserved.</footer>
+</body>
+</html>
+

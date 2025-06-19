@@ -1,0 +1,67 @@
+<!-- Combined Full Website Code with Separate Pages and Consistent Style -->
+<!-- index.html (About Page) -->
+
+<!-- ABOUT PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RaymondX | About</title>
+  <link rel="stylesheet" href="style.css">
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo"><a href="contact.html" style="color:#00ff88; font-weight: bold;">RaymondX</a></div>
+    <ul>
+      <li><a href="index.html">About</a></li>
+      <li><a href="project.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="more.html">More</a></li>
+    </ul>
+  </nav>
+  <br> <br>
+  <button class="dark-toggle" aria-label="Toggle Dark Mode">Light Mode</button>
+
+  <div class="container">
+    <div class="profile-pic">
+      <img src="sky.jpg" alt="RaymondX">
+    </div>
+    <div class="active-indicator"></div>
+    <h1>Welcome to RaymondX's Portfolio</h1>
+    <p>I am passionate about creating sleek web experiences and dynamic interfaces.</p>
+
+    <h2>Skills</h2>
+    <div class="slider">
+      <div class="slide">HTML5</div>
+      <div class="slide">CSS3</div>
+      <div class="slide">JavaScript</div>
+      <div class="slide">React</div>
+      <div class="slide">Firebase</div>
+    </div>
+
+    <h2>Testimonials</h2>
+    <div class="slider">
+      <div class="slide">"Raymond is a genius!" – Client A</div>
+      <div class="slide">"Impressive design skills." – Client B</div>
+      <div class="slide">"Superb work on our project." – Client C</div>
+      <div class="slide">"Very responsive and skilled." – Client D</div>
+    </div>
+  </div>
+
+
+  <footer>
+    &copy; 2025 RaymondX. All Rights Reserved.
+  </footer>
+  
+  <script>
+  // Dark mode toggle
+  const toggle = document.querySelector('.dark-toggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+  });
+</script>
+</body>
+</html>

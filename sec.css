@@ -1,0 +1,82 @@
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0f0f0f;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+nav ul li a {
+  color: #00ff88;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.container {
+  padding: 120px 2rem 2rem;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 14px;
+  color: #888;
+  border-top: 1px solid #333;
+  margin-top: 3rem;
+}
+
+.profile-pic {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 1rem auto;
+  transition: transform 0.3s;
+}
+
+.profile-pic:hover {
+  transform: scale(1.1);
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.active-indicator {
+  width: 12px;
+  height: 12px;
+  background-color: #00ff88;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "raymond-ai-proxy",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "server.js",
+    "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.18.2",
+      "node-fetch": "^3.3.2"
+    }
+  }
+  
