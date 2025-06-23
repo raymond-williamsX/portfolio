@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raymond's Playground AI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .user {
+      background-color: #1f2937;
+      align-self: flex-end;
+    }
+
+    .ai {
+      background-color: #14ff8f;
+      color: #000;
+      align-self: flex-start;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .input-bar {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid #2c2c2c;
+      background-color: #111;
+    }
+
+    .input-bar input {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      background-color: #1f1f1f;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .input-bar button {
+      background-color: #14ff8f;
+      color: #000;
+      border: none;
+      padding: 10px 16px;
+      margin-left: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .input-bar button:hover {
+      background-color: #11e27c;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container" id="chat"></div>
+
+  <div class="input-bar">
+    <input type="text" id="input" placeholder="Ask something about Raymond..." autocomplete="off" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    const chatContainer = document.getElementById('chat');
+    const inputField = document.getElementById('input');
+
+    async function sendMessage() {
+      const input = inputField.value.trim();
+      if (!input) return;
+
+      // Append user message
+      appendMessage(input, 'user');
+      inputField.value = '';
+
+      // Call backend
+      try {
+        const res = await fetch('https://your-render-service-url/ask-gemini', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: input })
+        });
+
+        const data = await res.json();
+        const reply = data.reply || "Hmm... I couldn't think of anything right now.";
+
+        // Append AI message
+        appendMessage(reply, 'ai');
+      } catch (err) {
+        appendMessage("⚠️ Failed to get response from Gemini.", 'ai');
+      }
+    }
+
+    function appendMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.classList.add('message', sender);
+      msg.innerText = text;
+      chatContainer.appendChild(msg);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    inputField.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>
