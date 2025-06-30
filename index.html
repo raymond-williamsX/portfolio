@@ -172,6 +172,17 @@
       max-width: 100%;
     }
   }
+@media (min-width: 768px) {
+  .containr {
+    align-items: stretch; /* Ensures both sidebar and main stretch equally */
+  }
+
+  .sidebar, .main {
+    display: flex;
+    flex-direction: column;
+  }
+}
+    
 </style>
 </head>
 
