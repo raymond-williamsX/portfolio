@@ -189,3 +189,28 @@
 
       try {
         const res = await fetch("https://render-q4hz.onrender.com/ask-gemini", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: question })
+        });
+
+        const data = await res.json();
+        thinking.innerText = data.reply || "Sorry, I couldn't answer that.";
+      } catch (err) {
+        console.error(err);
+        thinking.innerText = "Something went wrong. Please try again later.";
+      }
+
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    function appendMessage(text, type) {
+      const div = document.createElement("div");
+      div.className = `message ${type}`;
+      div.innerText = text;
+      chatLog.appendChild(div);
+      return div;
+    }
+  </script>
+</body>
+</html>
