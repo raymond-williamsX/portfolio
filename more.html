@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RaymondX | More</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpg" href="cool.jpg" />
   <style>
     * {
@@ -17,11 +17,9 @@
     }
 
     body {
-      font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: #0f0f0f;
       color: #fff;
-      line-height: 1.6;
-      overflow-x: hidden;
     }
 
     nav {
@@ -63,11 +61,66 @@
       text-align: center;
     }
 
-    canvas {
-      margin-top: 2rem;
-      background: #222;
-      border: 3px solid #00ff88;
+    .chat-wrapper {
+      margin: 4rem auto;
+      max-width: 700px;
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,255,136,0.3);
+    }
+
+    .chat-log {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 1rem;
       border-radius: 10px;
+      background: #111;
+      margin-bottom: 1rem;
+    }
+
+    .message {
+      margin: 1rem 0;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      max-width: 75%;
+      word-wrap: break-word;
+    }
+
+    .user {
+      background-color: #00ff88;
+      color: #000;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .ai {
+      background-color: #2a2a2a;
+      border: 1px solid #00ff88;
+      text-align: left;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .input-row input {
+      flex: 1;
+      padding: 0.8rem;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    .input-row button {
+      padding: 0.8rem 1.5rem;
+      background: #00ff88;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
     }
 
     footer {
@@ -89,76 +142,7 @@
         justify-content: center;
       }
     }
-    .chat-box {
-  background: #1b1b1b;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 700px;
-  margin: 3rem auto;
-  box-shadow: 0 0 15px rgba(0,255,136,0.3);
-  color: white;
-}
-.chat-box h2 {
-  margin-bottom: 1rem;
-  color: #00ff88;
-}
-textarea {
-  width: 100%;
-  height: 100px;
-  border-radius: 8px;
-  padding: 1rem;
-  border: none;
-  resize: vertical;
-  font-size: 16px;
-}
-button {
-  margin-top: 1rem;
-  background: #00ff88;
-  color: #000;
-  border: none;
-  font-weight: bold;
-  padding: 0.7rem 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-#chatResponse {
-  margin-top: 1rem;
-  background: #111;
-  padding: 1rem;
-  border-radius: 8px;
-}
-    
-.ph {
-  color: #00ff88;
-  font-size: 40px;
-}
-
   </style>
-<script>
-  async function askGemini() {
-    const input = document.getElementById('userInput').value;
-    const responseEl = document.getElementById('chatResponse');
-    responseEl.innerText = "Thinking...";
-
-    try {
-      const res = await fetch("https://render-q4hz.onrender.com/ask-gemini", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: input })
-      });
-
-
-
-      const data = await res.json();
-      responseEl.innerText = data.reply || "Sorry, I couldn't answer that.";
-    } catch (err) {
-      console.error(err);
-      responseEl.innerText = "Something went wrong. Please try again later.";
-    }
-  }
-  </script>
-  
-
 </head>
 <body>
   <nav>
@@ -170,21 +154,38 @@ button {
       <li><a href="more.html">More</a></li>
     </ul>
   </nav>
- <br> <br>  <h1 style="text-align: center; color:#00ff88;">Welcome to the More Page <i class="ph-light ph-robot"></i></h1>
 
-  <div class="chat-box"> 
-    <h2>Ask Raymond's AI <i class="ph-light ph-robot"></i></h2>
-    <textarea id="userInput" placeholder="Ask anything about Raymond..."></textarea>
-    <button onclick="askGemini()">Ask</button>
-    <div id="chatResponse"></div>
+  <div class="container">
+    <h1 style="color:#00ff88;">Welcome to the More Page <i class="ph-light ph-robot"></i></h1>
+    
+    <div class="chat-wrapper">
+      <h2 style="color:#00ff88;">Ask Raymond's AI <i class="ph-light ph-robot"></i></h2>
+      <div class="chat-log" id="chatLog"></div>
+      <div class="input-row">
+        <input type="text" id="userInput" placeholder="Ask anything about Raymond..." />
+        <button onclick="askGemini()">Send</button>
+      </div>
+    </div>
   </div>
- 
 
-</body>
   <footer>
     &copy; 2025 RaymondX. All Rights Reserved.
   </footer>
 
-  
-</body>
-</html>
+  <script>
+    const chatLog = document.getElementById("chatLog");
+    const input = document.getElementById("userInput");
+
+    async function askGemini() {
+      const question = input.value.trim();
+      if (!question) return;
+
+      // Add user's message
+      appendMessage(question, 'user');
+      input.value = "";
+
+      // Add thinking placeholder
+      const thinking = appendMessage("Thinking...", 'ai');
+
+      try {
+        const res = await fetch("https://render-q4hz.onrender.com/ask-gemini", {
