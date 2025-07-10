@@ -194,6 +194,12 @@
   <script>
     const chatLog = document.getElementById("chatLog");
     const input = document.getElementById("userInput");
+    // Trigger send on Enter key (Desktop)
+input.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    askGemini();
+  }
+});
 
     async function askGemini() {
       const question = input.value.trim();
