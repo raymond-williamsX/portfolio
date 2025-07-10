@@ -16,7 +16,10 @@
   <link rel="icon" type="image/jpg" href="cool.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <meta name="description" content="I’m a frontend developer who builds modern, fast, and responsive websites using HTML, CSS, JavaScript, and React. Need a developer for your business or personal site? Let’s work together.">
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     
 
     <style>
@@ -226,12 +229,12 @@
       <img src="cool.jpg" alt="RaymondX">
     </div>
     <div class="active-indicator"></div>
-    <h1 style="color:#00ff88;">Welcome to RaymondX's Portfolio</h1>
-    <p>I am passionate about creating sleek web experiences and dynamic interfaces.</p>
+    <h1 style="color:#00ff88;" data-aos="fade-up">Welcome to RaymondX's Portfolio</h1>
+    <p data-aos="fade-up">I am passionate about creating sleek web experiences and dynamic interfaces.</p>
 
     
   <div class="containr">
-    <div class="sidebar">
+    <div class="sidebar" data-aos="zoom-in">
        <img src="cool.jpg" alt="Raymond Williams">
       <h2 style="color:#00ff88;">Raymond Williams</h2>
       <p>Frontend Developer</p>
@@ -242,35 +245,35 @@
       </div>
     </div>
 
-    <div class="main">
+    <div class="main" data-aos="fade-down">
       <h1 style="color:#00ff88;">About Me</h1>
       <p>I’m Raymond Williams, a frontend developer passionate about crafting exceptional digital experiences. I build sleek, high-performing, and SEO-optimized web applications using modern tools like React, JavaScript, and GSAP.</p>
       <p>Whether you're looking for a sleek high-performance website, an outstanding portfolio, a mini-game, an interactive mobile app and many more...— I bring together design, performance, and functionality. My focus is on clarity, speed, and polish.</p>
-      <ul>
+      <ul data-aos="fade-down">
         <li><strong>Clarity</strong>: Clean, intuitive interfaces</li>
         <li><strong>Performance</strong>: Fast load times and smooth animations</li>
         <li><strong>Polish</strong>: Premium quality and user experience</li>
       </ul>
 
       <div class="services">
-        <h2 style="color:#00ff88;">What I'm Doing</h2>
+        <h2 style="color:#00ff88;" data-aos="fade-up">What I'm Doing</h2>
         <div class="service-cards">
-          <div class="card">
+          <div class="card" data-aos="flip-left">
             <i class="ph ph-code"></i>
             <h3 style="color:#00ff88;">Web Development</h3>
             <p>High-quality sites with premium design and functionality.</p>
           </div>
-          <div class="card">
+          <div class="card" data-aos="flip-left">
             <i class="ph ph-device-mobile"></i>
             <h3 style="color:#00ff88;">Mobile Apps</h3>
             <p>Responsive and dynamic web apps built with React.</p>
           </div>
-          <div class="card">
+          <div class="card" data-aos="flip-left">
             <i class="ph-bold ph-paint-brush" style="color: #00ff88; font-size: 40px;"></i>
             <h3 style="color:#00ff88;">UI/UX Design</h3>
             <p>Beautiful, user-focused design that converts.</p>
           </div>
-          <div class="card">
+          <div class="card" data-aos="flip-left">
             <i class="ph ph-gear"></i>
             <h3 style="color: #00ff88;">Backend Development</h3>
             <p>Sleek and High performance Backend services designed for seamless user experience with optimum efficiency.</p>
@@ -280,9 +283,9 @@
     </div>
   </div>
 
-    <h2 style="color: #00ff88; ">Skills</h2>
+    <h2 style="color: #00ff88; " data-aos="fade-up">Skills</h2>
     
-<div class="skills-icons">
+<div class="skills-icons" data-aos="zoom-in">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
@@ -298,8 +301,8 @@
    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
 
 </div>
-    <h2 style="color: #00ff88;" >Testimonials</h2>
-    <div class="slider">
+    <h2 style="color: #00ff88;" data-aos="fade-left" >Testimonials</h2>
+    <div class="slider" data-aos="zoom-in">
       <div class="slide">"Raymond is a genius!" – Client A</div>
       <div class="slide">"Impressive design skills." – Client B</div>
       <div class="slide">"Superb work on our project." – Client C</div>
@@ -318,5 +321,14 @@
     document.body.classList.toggle('dark');
   });
 </script>
+  <!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000, // speed of animation
+    once: true,     // only animate once
+  });
+</script>
+
 </body>
 </html>
