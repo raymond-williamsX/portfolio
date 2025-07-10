@@ -104,27 +104,31 @@
     }
 
     .input-row {
-      display: flex;
-      gap: 1rem;
-    }
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  align-items: center;
+}
 
-    .input-row input {
-      flex: 1;
-      padding: 0.8rem;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-    }
+.input-row input {
+  flex: 1;
+  padding: 0.8rem;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  min-width: 0; /* important to prevent overflow */
+}
 
-    .input-row button {
-      padding: 0.8rem 1.5rem;
-      background: #00ff88;
-      color: #000;
-      font-weight: bold;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-    }
+.input-row button {
+  padding: 0.8rem 1rem;
+  background: #00ff88;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
 
     footer {
       text-align: center;
@@ -145,6 +149,18 @@
         justify-content: center;
       }
     }
+
+    @media (max-width: 480px) {
+  .input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-row input,
+  .input-row button {
+    width: 100%;
+  }
+      }
   </style>
 </head>
 <body>
