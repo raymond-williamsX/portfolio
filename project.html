@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpg" href="cool.jpg" />
+  <!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
     body {
      font-family: 'Poppins', sans-serif;
@@ -32,29 +35,29 @@
     </ul>
   </nav>
 
-  <div class="container">
+  <div class="container" data-aos="fade-in">
     <h1 style="color:#00ff88;">Projects Showcase <i class="ph-light ph-briefcase"></i></h1>
     <div class="project-grid">
-      <div class="project">
+      <div class="project" data-aos="fade-left">
         <h3>Personal Portfolio</h3>
         <p>A stylish portfolio showcasing my work, bio, and contact info — fully responsive and interactive.</p>
         <a href="morex.html" target="_blank">Live Demo</a>
       
       </div>
-      <div class="project">
+      <div class="project" data-aos="fade-right">
         <h3>Upcoming Project</h3>
         <p>Details coming soon. Stay tuned for future updates with cool demos and interactions!</p>
       </div>
     </div>
   </div>
-<div class="project">
+<div class="project" data-aos="zoom-in">
   
   <h1 style="color:#00ff88;">My Projects</h1>
     <p>Live demo of some of my projects.</p>
     <iframe src="index.html" width="90%" height="500px"  style=" border-radius: 12px;" ></iframe>
 </div>
 
-<div class="project">
+<div class="project" data-aos="zoom-out">
 <h1 style="color:#00ff88;">Custom Portfolio</h1>
 <p>Live demo of some of my projects.</p>
 <iframe src="https://raymondx-portfolio.netlify.app" width="90%" height="500px" style=" border-radius: 12px;"></iframe>
@@ -64,5 +67,14 @@
   <footer>
     &copy; 2025 RaymondX. All Rights Reserved.
   </footer>
+  <!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: false, // animate every time
+  });
+</script>
+
 </body>
 </html>
