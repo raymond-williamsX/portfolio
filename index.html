@@ -205,53 +205,49 @@
   box-shadow: 0 0 10px #00ff88;
 }
 
-/* Default (Desktop view) */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-radius: 0;
-  margin: 0;
-  padding: 10px 20px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 999;
-}
 
-/* Mobile view */
-@media (max-width: 768px) {
-  nav {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    border-radius: 20px;
-    padding: 12px 18px;
-    background: #ffffff;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  nav ul {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
-  }
-
-  nav ul li {
-    list-style: none;
-  }
-
-  nav ul li a {
-    padding: 10px;
-    font-size: 14px;
-  }
-}
  
  nav {
   transition: all 0.3s ease-in-out;
- }     
+ } 
+ /* Existing top nav stays the same */
+
+/* NEW: Pill Nav for mobile */
+.mobile-pill-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  padding: 10px 25px;
+  border-radius: 50px;
+  display: flex;
+  gap: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  z-index: 999;
+}
+
+/* Mobile pill nav link style */
+.mobile-pill-nav a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 13.5px;
+}
+
+/* Hide pill nav on desktop */
+@media (min-width: 768px) {
+  .mobile-pill-nav {
+    display: none;
+  }
+}
+
+/* Optionally hide desktop nav on small screens */
+@media (max-width: 767px) {
+  nav:not(.mobile-pill-nav) {
+    display: none;
+  }
+      }     
       
 </style>
 </head>
@@ -269,9 +265,15 @@ nav {
       <li><a href="more.html">More</a></li>
     </ul>
   </nav>
-  <br> <br>
-  <button class="dark-toggle" aria-label="Toggle Dark Mode">Theme Mode</button>
 
+  <nav class="mobile-pill-nav">
+  <a href="index.html">About</a>
+  <a href="project.html">Projects</a>
+  <a href="more.html">More</a>
+  <a href="contact.html">Contact</a>
+  </nav>
+  <br> <br>
+  
   <div class="container">
     <div class="profile-pic">
       <img src="cool.jpg" alt="RaymondX">
@@ -362,13 +364,6 @@ nav {
     &copy; 2025 RaymondX. All Rights Reserved.
   </footer>
   
-  <script>
-  // Dark mode toggle
-  const toggle = document.querySelector('.dark-toggle');
-  toggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-  });
-</script>
   <!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
