@@ -259,9 +259,65 @@
     display: none;
   }
       }     
-      
-</style>
-</head>
+
+      @media screen and (max-width: 480px) {
+  /* Example fixes */
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .intro, .contact-section, .project-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  h1, h2, p {
+    font-size: smaller;
+    text-align: center;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+
+      @media screen and (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+      @media screen and (max-width: 480px) {
+  .flex-row {
+    flex-direction: column;
+  }
+}
+
+.nav {
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .nav a {
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+  }
+}
 
   
   </style>
