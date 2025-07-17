@@ -95,7 +95,12 @@ body {
     padding: 8px 14px;
   }
 }
-
+ .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
 @media screen and (max-width: 480px) {
   body {
     padding: 15px 10px;
