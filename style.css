@@ -1,4 +1,40 @@
-    * {
+/* Responsive Fix for 480px */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .nav, .intro, .contact-section, .project-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-card, .contact-form, .about-content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  h1, h2 {
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
+* {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
