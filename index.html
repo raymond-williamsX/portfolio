@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raymond Williams - Futuristic Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#39FF14',
+                        secondary: '#0B3B0B'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .digital-noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .glow-green {
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+        }
+        
+        .glow-green-strong {
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.8);
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-line {
+            background: linear-gradient(90deg, transparent, #39FF14, transparent);
+            height: 1px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #39FF14;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #39FF14; }
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #39FF14;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .skill-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .skill-card:hover {
+            transform: rotateY(10deg) scale(1.05);
+        }
+        
+        .project-card {
+            transition: all 0.4s ease;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+        }
+        
+        .project-card:hover {
+            border-color: #39FF14;
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .nav-floating {
+            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #39FF14;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        }
+        
+        .testimonial-frame {
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, rgba(57, 255, 20, 0.2), transparent) border-box;
+            border-image: linear-gradient(45deg, #39FF14, transparent) 1;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="digital-noise"></div>
+    
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 nav-floating rounded-full px-8 py-3 md:block hidden">
+        <div class="flex items-center space-x-8">
+            <a href="#home" class="text-white hover:text-primary transition-colors duration-300">Home</a>
+            <a href="#about" class="text-white hover:text-primary transition-colors duration-300">About</a>
+            <a href="#skills" class="text-white hover:text-primary transition-colors duration-300">Skills</a>
+            <a href="#projects" class="text-white hover:text-primary transition-colors duration-300">Projects</a>
+            <a href="#testimonials" class="text-white hover:text-primary transition-colors duration-300">Reviews</a>
+            <a href="#contact" class="text-white hover:text-primary transition-colors duration-300">Contact</a>
+        </div>
+    </nav>
+    
+    <nav class="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 nav-floating rounded-full px-6 py-3 md:hidden block">
+        <div class="flex items-center space-x-6">
+            <a href="#home" class="w-8 h-8 flex items-center justify-center text-white hover:text-primary transition-colors duration-300">
+                <i class="ri-home-line"></i>
+            </a>
+            <a href="#about" class="w-8 h-8 flex items-center justify-center text-white hover:text-primary transition-colors duration-300">
+                <i class="ri-user-line"></i>
+            </a>
+            <a href="#skills" class="w-8 h-8 flex items-center justify-center text-white hover:text-primary transition-colors duration-300">
+                <i class="ri-code-line"></i>
+            </a>
+            <a href="#projects" class="w-8 h-8 flex items-center justify-center text-white hover:text-primary transition-colors duration-300">
+                <i class="ri-folder-line"></i>
+            </a>
+            <a href="#contact" class="w-8 h-8 flex items-center justify-center text-white hover:text-primary transition-colors duration-300">
+                <i class="ri-mail-line"></i>
+            </a>
+        </div>
+    </nav>
+    
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="particle" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="top: 20%; right: 15%; animation-delay: 1s;"></div>
+        <div class="particle" style="bottom: 30%; left: 20%; animation-delay: 2s;"></div>
+        <div class="particle" style="bottom: 20%; right: 10%; animation-delay: 3s;"></div>
+        <div class="particle" style="top: 50%; left: 5%; animation-delay: 4s;"></div>
+        
+        <div class="text-center z-10 px-4 max-w-4xl mx-auto">
+            <div class="relative mb-8 inline-block">
+                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mx-auto relative">
+                    <img src="raymond_logo.jpg" 
+                         alt="Raymond Williams" 
+                         class="w-full h-full object-cover object-top">
+                    <div class="absolute inset-0 rounded-full border-4 border-primary glow-green-strong animate-pulse"></div>
+                </div>
+            </div>
+            
+            <h1 class="orbitron text-4xl md:text-6xl lg:text-7xl font-black mb-4 text-white">
+                RAYMOND WILLIAMS
+            </h1>
+            
+            <div class="text-xl md:text-2xl lg:text-3xl text-primary mb-6 typing-animation">
+                Full-Stack Developer & UI/UX Designer
+            </div>
+            
+            <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+                Crafting next-generation digital experiences with cutting-edge technology and innovative design solutions
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-primary text-black px-8 py-4 !rounded-button font-semibold text-lg hover:glow-green-strong transition-all duration-300 whitespace-nowrap">
+                    View My Work
+                </button>
+                <button class="border-2 border-primary text-primary px-8 py-4 !rounded-button font-semibold text-lg hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap">
+                    Download CV
+                </button>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <div class="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="gradient-line mb-16"></div>
+            
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-3 fade-in">
+                    <h2 class="orbitron text-3xl md:text-5xl font-bold mb-6 text-white">
+                        ABOUT <span class="text-primary">ME</span>
+                    </h2>
+                    
+                    <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
+                        <p>
+                            I'm a passionate full-stack developer with over 6 years of experience building scalable web applications and immersive user experiences. My expertise spans across modern JavaScript frameworks, cloud architecture, and cutting-edge design systems.
+                        </p>
+                        
+                        <p>
+                            Currently leading digital transformation projects at TechNova Solutions, I specialize in React, Node.js, and AI-powered applications. My work has helped companies increase their digital engagement by 300% and streamline their development processes.
+                        </p>
+                        
+                        <p>
+                            When I'm not coding, you'll find me exploring emerging technologies, contributing to open-source projects, or mentoring the next generation of developers through tech communities.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <div class="glass px-4 py-2 rounded-lg">
+                            <span class="text-primary font-semibold">150+</span>
+                            <span class="text-white ml-2">Projects Completed</span>
+                        </div>
+                        <div class="glass px-4 py-2 rounded-lg">
+                            <span class="text-primary font-semibold">50+</span>
+                            <span class="text-white ml-2">Happy Clients</span>
+                        </div>
+                        <div class="glass px-4 py-2 rounded-lg">
+                            <span class="text-primary font-semibold">6+</span>
+                            <span class="text-white ml-2">Years Experience</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2 fade-in">
+                    <div class="glass p-8 rounded-2xl">
+                        <h3 class="orbitron text-xl font-bold mb-6 text-primary">CORE EXPERTISE</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-white">Frontend Development</span>
+                                <span class="text-primary">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-white">Backend Development</span>
+                                <span class="text-primary">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-white">UI/UX Design</span>
+                                <span class="text-primary">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-white">Cloud Architecture</span>
+                                <span class="text-primary">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-5xl font-bold mb-6 text-white fade-in">
+                    TECH <span class="text-primary">STACK</span>
+                </h2>
+                <p class="text-gray-300 text-xl max-w-2xl mx-auto fade-in">
+                    Mastering the latest technologies to build tomorrow's digital solutions
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-reactjs-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">React</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-nodejs-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">Node.js</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-javascript-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">JavaScript</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-database-2-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">CSS3</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-cloud-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">HTML5</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-palette-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">Figma</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-vuejs-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">Vue.js</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-github-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">Git</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-docker-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">Next.js</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-smartphone-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">React Native</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-brain-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">Python</h3>
+                </div>
+                
+                <div class="skill-card glass p-6 rounded-2xl text-center hover:glow-green fade-in">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-3xl text-primary">
+                        <i class="ri-shield-check-line"></i>
+                    </div>
+                    <h3 class="text-white font-semibold">Framer</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-5xl font-bold mb-6 text-white fade-in">
+                    FEATURED <span class="text-primary">PROJECTS</span>
+                </h2>
+                <p class="text-gray-300 text-xl max-w-2xl mx-auto fade-in">
+                    Showcasing innovative solutions that push the boundaries of technology
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card glass p-6 rounded-2xl fade-in">
+                    <div class="relative mb-6 rounded-xl overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=Modern%20AI-powered%20dashboard%20interface%2C%20sleek%20dark%20theme%2C%20neon%20green%20accents%2C%20futuristic%20data%20visualization%2C%20clean%20minimalist%20design%2C%20professional%20software%20interface%2C%20high-tech%20aesthetic%2C%20glowing%20elements%2C%20contemporary%20UI%20design&width=400&height=250&seq=project-ai-001&orientation=landscape" 
+                             alt="AI Analytics Platform" 
+                             class="w-full h-48 object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    
+                    <h3 class="orbitron text-xl font-bold text-white mb-3">AI Analytics Platform</h3>
+                    <p class="text-gray-300 mb-4">
+                        Real-time data visualization platform powered by machine learning algorithms for predictive analytics and business intelligence.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">TensorFlow</span>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <button class="flex-1 bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:glow-green transition-all duration-300 whitespace-nowrap">
+                            <i class="ri-eye-line mr-2"></i>Live Demo
+                        </button>
+                        <button class="flex-1 border border-primary text-primary px-4 py-2 !rounded-button font-semibold hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap">
+                            <i class="ri-github-line mr-2"></i>Code
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="project-card glass p-6 rounded-2xl fade-in">
+                    <div class="relative mb-6 rounded-xl overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=Futuristic%20e-commerce%20mobile%20app%20interface%2C%20dark%20theme%20with%20neon%20green%20highlights%2C%20modern%20shopping%20cart%20design%2C%20sleek%20product%20cards%2C%20contemporary%20mobile%20UI%2C%20professional%20app%20design%2C%20clean%20layout%2C%20high-tech%20aesthetic&width=400&height=250&seq=project-ecom-002&orientation=landscape" 
+                             alt="E-Commerce Mobile App" 
+                             class="w-full h-48 object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    
+                    <h3 class="orbitron text-xl font-bold text-white mb-3">E-Commerce Mobile App</h3>
+                    <p class="text-gray-300 mb-4">
+                        Cross-platform mobile application with AR try-on features, personalized recommendations, and seamless checkout experience.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">React Native</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">AR Kit</span>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <button class="flex-1 bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:glow-green transition-all duration-300 whitespace-nowrap">
+                            <i class="ri-eye-line mr-2"></i>Live Demo
+                        </button>
+                        <button class="flex-1 border border-primary text-primary px-4 py-2 !rounded-button font-semibold hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap">
+                            <i class="ri-github-line mr-2"></i>Code
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="project-card glass p-6 rounded-2xl fade-in">
+                    <div class="relative mb-6 rounded-xl overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=Blockchain%20cryptocurrency%20trading%20platform%20interface%2C%20dark%20futuristic%20design%2C%20neon%20green%20charts%20and%20graphs%2C%20modern%20financial%20dashboard%2C%20professional%20trading%20interface%2C%20high-tech%20aesthetic%2C%20clean%20minimalist%20layout&width=400&height=250&seq=project-crypto-003&orientation=landscape" 
+                             alt="Crypto Trading Platform" 
+                             class="w-full h-48 object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    
+                    <h3 class="orbitron text-xl font-bold text-white mb-3">Crypto Trading Platform</h3>
+                    <p class="text-gray-300 mb-4">
+                        Decentralized trading platform with advanced charting tools, automated trading bots, and secure wallet integration.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Vue.js</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Solidity</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Web3</span>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <button class="flex-1 bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:glow-green transition-all duration-300 whitespace-nowrap">
+                            <i class="ri-eye-line mr-2"></i>Live Demo
+                        </button>
+                        <button class="flex-1 border border-primary text-primary px-4 py-2 !rounded-button font-semibold hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap">
+                            <i class="ri-github-line mr-2"></i>Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-5xl font-bold mb-6 text-white fade-in">
+                    CLIENT <span class="text-primary">REVIEWS</span>
+                </h2>
+                <p class="text-gray-300 text-xl fade-in">
+                    What industry leaders say about working with me
+                </p>
+            </div>
+            
+            <div class="testimonial-slider relative">
+                <div class="testimonial-frame glass p-8 rounded-2xl text-center">
+                    <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-6 border-2 border-primary glow-green">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20business%20executive%20portrait%2C%20confident%20CEO%20headshot%2C%20modern%20corporate%20leader%2C%20clean%20background%2C%20professional%20attire%2C%20contemporary%20business%20photography%2C%20high-quality%20portrait&width=200&height=200&seq=client-sarah-001&orientation=squarish" 
+                             alt="Sarah Johnson" 
+                             class="w-full h-full object-cover object-top">
+                    </div>
+                    
+                    <div class="text-6xl text-primary mb-4">"</div>
+                    
+                    <p class="text-gray-300 text-lg mb-6 italic leading-relaxed">
+                        RAYMOND transformed our entire digital infrastructure. His expertise in modern web technologies and attention to detail resulted in a 300% increase in user engagement. Absolutely phenomenal work!
+                    </p>
+                    
+                    <h4 class="text-white font-semibold text-xl">Sarah Johnson</h4>
+                    <p class="text-primary">CEO, TechVision Inc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-5xl font-bold mb-6 text-white fade-in">
+                    GET IN <span class="text-primary">TOUCH</span>
+                </h2>
+                <p class="text-gray-300 text-xl fade-in">
+                    Ready to bring your next project to life? Let's create something amazing together.
+                </p>
+            </div>
+            
+            <div class="glass p-8 rounded-2xl">
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-white mb-2 font-medium">Name</label>
+                            <input type="text" 
+                                   class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
+                                   placeholder="Your full name">
+                        </div>
+                        <div>
+                            <label class="block text-white mb-2 font-medium">Email</label>
+                            <input type="email" 
+                                   class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
+                                   placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white mb-2 font-medium">Subject</label>
+                        <input type="text" 
+                               class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
+                               placeholder="Project discussion">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white mb-2 font-medium">Message</label>
+                        <textarea rows="6" 
+                                  class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300 resize-none" 
+                                  placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full bg-primary text-black px-8 py-4 !rounded-button font-semibold text-lg hover:glow-green-strong transition-all duration-300 whitespace-nowrap">
+                        <i class="ri-send-plane-line mr-2"></i>Send Message
+                    </button>
+                </form>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="w-12 h-12 flex items-center justify-center glass rounded-full text-primary hover:glow-green transition-all duration-300">
+                        <i class="ri-github-line text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 flex items-center justify-center glass rounded-full text-primary hover:glow-green transition-all duration-300">
+                        <i class="ri-linkedin-line text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 flex items-center justify-center glass rounded-full text-primary hover:glow-green transition-all duration-300">
+                        <i class="ri-twitter-line text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 flex items-center justify-center glass rounded-full text-primary hover:glow-green transition-all duration-300">
+                        <i class="ri-mail-line text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="py-8 px-4 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400">
+                © 2025 RAYMOND WILLIAMS. Crafted with passion and cutting-edge technology.
+            </p>
+        </div>
+    </footer>
+    <script id="scroll-animations">
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <script id="smooth-scrolling">
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="form-interactions">
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                submitBtn.innerHTML = '<i class="ri-loader-4-line mr-2 animate-spin"></i>Sending...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="ri-check-line mr-2"></i>Message Sent!';
+                    submitBtn.classList.remove('bg-primary');
+                    submitBtn.classList.add('bg-green-500');
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<i class="ri-send-plane-line mr-2"></i>Send Message';
+                        submitBtn.classList.remove('bg-green-500');
+                        submitBtn.classList.add('bg-primary');
+                        submitBtn.disabled = false;
+                        form.reset();
+                    }, 2000);
+                }, 1500);
+            });
+        });
+    </script>
+
+    <script id="typing-effect">
+        document.addEventListener('DOMContentLoaded', function() {
+            const typingElement = document.querySelector('.typing-animation');
+            const text = 'Full-Stack Developer & UI/UX Designer';
+            let index = 0;
+            
+            function typeText() {
+                if (index < text.length) {
+                    typingElement.textContent = text.slice(0, index + 1);
+                    index++;
+                    setTimeout(typeText, 100);
+                } else {
+                    setTimeout(() => {
+                        index = 0;
+                        typingElement.textContent = '';
+                        typeText();
+                    }, 3000);
+                }
+            }
+            
+            setTimeout(typeText, 1000);
+        });
+    </script>
+</body>
+</html>
