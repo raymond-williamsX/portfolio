@@ -624,46 +624,46 @@
             </div>
             
             <div class="glass p-8 rounded-2xl">
-                <form class="space-y-6"  
-                    action="https://formspree.io/f/xandkoya"
-                        method="POST"
-                    
-                    >
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-white mb-2 font-medium">Name</label>
-                            <input type="text" 
-                                   class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
-                                   placeholder="Your full name">
-                        </div>
-                        <div>
-                            <label class="block text-white mb-2 font-medium">Email</label>
-                            <input type="email" 
-                                   class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
-                                   placeholder="your.email@example.com">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-white mb-2 font-medium">Subject</label>
-                        <input type="text" 
-                               class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
-                               placeholder="Project discussion">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-white mb-2 font-medium">Message</label>
-                        <textarea rows="6" 
-                                  class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300 resize-none" 
-                                  placeholder="Tell me about your project..."></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-primary text-black px-8 py-4 !rounded-button font-semibold text-lg hover:glow-green-strong transition-all duration-300 whitespace-nowrap">
-                        <i class="ri-send-plane-line mr-2"></i>Send Message
-                    </button>
-                </form>
-            </div>
+  <form class="space-y-6"  
+        action="https://formspree.io/f/xandkoya"
+        method="POST">
+        
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-white mb-2 font-medium">Name</label>
+        <input type="text" name="name"
+               class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
+               placeholder="Your full name" required>
+      </div>
+      <div>
+        <label class="block text-white mb-2 font-medium">Email</label>
+        <input type="email" name="email"
+               class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
+               placeholder="your.email@example.com" required>
+      </div>
+    </div>
+    
+    <div>
+      <label class="block text-white mb-2 font-medium">Subject</label>
+      <input type="text" name="subject"
+             class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300" 
+             placeholder="Project discussion">
+    </div>
+    
+    <div>
+      <label class="block text-white mb-2 font-medium">Message</label>
+      <textarea rows="6" name="message"
+                class="w-full bg-transparent border-2 border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary transition-all duration-300 resize-none" 
+                placeholder="Tell me about your project..." required></textarea>
+    </div>
+    
+    <button type="submit" 
+            class="w-full bg-primary text-black px-8 py-4 !rounded-button font-semibold text-lg hover:glow-green-strong transition-all duration-300 whitespace-nowrap">
+      <i class="ri-send-plane-line mr-2"></i>Send Message
+    </button>
+  </form>
+</div>
+
             
             <div class="mt-12 text-center">
                 <div class="flex justify-center space-x-6">
