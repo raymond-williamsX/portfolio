@@ -730,32 +730,61 @@
     </script>
 
     <script id="form-interactions">
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            const submitBtn = form.querySelector('button[type="submit"]');
-            
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                submitBtn.innerHTML = '<i class="ri-loader-4-line mr-2 animate-spin"></i>Sending...';
-                submitBtn.disabled = true;
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = '<i class="ri-check-line mr-2"></i>Message Sent!';
-                    submitBtn.classList.remove('bg-primary');
-                    submitBtn.classList.add('bg-green-500');
-                    
-                    setTimeout(() => {
-                        submitBtn.innerHTML = '<i class="ri-send-plane-line mr-2"></i>Send Message';
-                        submitBtn.classList.remove('bg-green-500');
-                        submitBtn.classList.add('bg-primary');
-                        submitBtn.disabled = false;
-                        form.reset();
-                    }, 2000);
-                }, 1500);
-            });
-        });
-    </script>
+document.addEventListener('DOMContentLoaded', function() {
+  // choose the contact form specifically (safer if you add other forms later)
+  const form = document.querySelector('#contact form') || document.querySelector('form');
+  if (!form) return;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalBtnHTML = submitBtn.innerHTML;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault(); // keep control so we can show nice UI
+
+    // UI: sending
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="ri-loader-4-line mr-2 animate-spin"></i>Sending...';
+
+    // collect data
+    const url = form.action; // should be https://formspree.io/f/xandkoya
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' } // ask for JSON response
+      });
+
+      if (res.ok) {
+        // success UI
+        submitBtn.innerHTML = '<i class="ri-check-line mr-2"></i>Message Sent!';
+        submitBtn.classList.remove('bg-primary');
+        submitBtn.classList.add('bg-green-500');
+        form.reset();
+
+        // OPTIONAL: if you prefer redirect to a thank-you page, uncomment:
+        // window.location.href = '/thank-you.html';
+      } else {
+        // server returned non-2xx
+        const err = await res.json().catch(() => null);
+        console.error('Formspree response error:', err);
+        alert('Submission failed. Please try again.');
+      }
+    } catch (networkErr) {
+      console.error('Network error:', networkErr);
+      alert('Network error. Please try again later.');
+    } finally {
+      // revert button after short delay
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+        submitBtn.classList.remove('bg-green-500');
+        submitBtn.classList.add('bg-primary');
+      }, 1800);
+    }
+  });
+});
+</script>
 
     <script id="typing-effect">
         document.addEventListener('DOMContentLoaded', function() {
