@@ -2,10 +2,13 @@
 import express from 'express';
 import cors from 'cors';
 import fetch from 'node-fetch';
+import path from 'path';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+// Serve static files (so that resume.pdf and other assets are accessible)
+app.use(express.static(path.resolve()));
 
 const GEMINI_API_KEY = 'AIzaSyBsdYS0Cxcb8N6IA5Q3PEeadFdS57yEXzU'; // Replace this
 
