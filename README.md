@@ -111,17 +111,21 @@ An intelligent chatbot powered by Gemini API, seamlessly integrated into my port
 - **Features:** Real-time responses, context awareness, smooth animations
 - **Visit:** [Personal AI](https://raymond-studio.netlify.app/more.html)
 
-### 2. **Portfolio Website**
-A modern, high-performance portfolio showcasing projects and client testimonials.
-- **Tech:** HTML5, Tailwind CSS, GSAP, Vanilla JavaScript
-- **Features:** Smooth animations, responsive design, SEO optimized
+### 2. **E-commerce Site**
+Cross-platform Web application with AR try-on features, personalized recommendations, and seamless checkout experience..
+- **Tech:** React, Tailwind CSS, GSAP, Vanilla JavaScript, TypeScript
+- **Features:** Smooth animations, personalised suggestions, SEO optimized,
 - **Performance:** 98 Lighthouse score
 
-### 3. **Full-Stack Web Applications**
-Multiple production applications built for startups and enterprises.
-- **Highlights:** Real-time data sync, user authentication, payment integration
-- **Impact:** 300% increase in client digital engagement
+### 3. ** MOOD AI**
+A science blog website for science enthusiasts and general learners
+- **Highlights:** Mood Reading AI, user authentication, payment integration
+- **Features:** Recognize emotions and turn them into captions
 
+### 3. ** Science Blog (New World Science)**
+AI for Content creators that helps them with making great captions and also read emotions from user's picture
+- **Highlights:** Mood Reading AI, user authentication, payment integration
+- **Features:** Recognize emotions and turn them into captions
 ---
 
 ## 🎓 Continuous Learning
