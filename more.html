@@ -3,252 +3,416 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RaymondX | Personal AI</title>
+  <title>Raymond Iorliam | AI & Experiments</title>
+  <meta name="description" content="Personal AI experiments and recent builds by Raymond Iorliam.">
 
-  <meta name="description" content=" Personal AI Chat bot FOR Raymond Iorliam Full-stack developer building fast, beautiful web apps. React, Tailwind, Node.js. View projects, contact for work.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpg" href="raymond_linkedin.jpg" />
-  <!-- AOS CSS -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <style>
+    :root {
+      --bg: #020307;
+      --card: rgba(14, 17, 34, 0.9);
+      --border: rgba(57, 255, 20, 0.2);
+      --accent: #39ff14;
+      --text-soft: #c1c1c8;
+    }
+
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0f0f0f;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #020308 0%, #000 60%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cpath fill='none' stroke='%23444444' stroke-width='1' d='M0 0h160v160H0z'/%3E%3C/svg%3E") center/400px auto repeat;
       color: #fff;
+      min-height: 100vh;
     }
 
     nav {
-      width: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed;
+      padding: 1rem 2rem;
+      position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    nav ul {
-      display: flex;
+    nav a {
+      color: #fff;
+      margin-right: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav .logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      letter-spacing: 0.3em;
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+    }
+
+    .hero {
+      padding: 6rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+      font-family: 'Orbitron', monospace;
+    }
+
+    .hero p {
+      color: var(--text-soft);
+      max-width: 700px;
+      margin: 0.5rem auto;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      margin-top: 2rem;
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-cta a {
+      border-radius: 999px;
+      padding: 0.85rem 1.6rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: #fff;
+      transition: background 0.3s ease;
+    }
+
+    .hero-cta a.primary {
+      background: var(--accent);
+      color: #000;
+      border: none;
+    }
+
+    .projects {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.4rem;
+      letter-spacing: 0.15em;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
 
-    nav ul li {
-      list-style: none;
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
     }
 
-    nav ul li a {
-      color: #00ff88;
+    .project-card img {
+      border-radius: 16px;
+      width: 100%;
+      object-fit: cover;
+      height: 160px;
+    }
+
+    .project-card span {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+
+    .project-card p {
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    .project-meta {
+      font-size: 0.9rem;
+      color: #b9b9c3;
+    }
+
+    .project-links {
+      margin-top: auto;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .project-links a {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav ul li a:hover {
       color: #fff;
+      font-size: 0.85rem;
+      transition: border 0.3s ease;
     }
 
-    .container {
-      padding: 100px 2rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
+    .project-links a:hover {
+      border-color: var(--accent);
     }
 
-    .chat-wrapper {
-      margin: 4rem auto;
-      max-width: 700px;
-      background: #1a1a1a;
+    .chat-section {
+      padding: 3rem 2rem 5rem;
+    }
+
+    .chat-card {
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,255,136,0.3);
+      box-shadow: 0 30px 55px rgba(0, 0, 0, 0.45);
     }
 
-    .chat-log {
-      max-height: 400px;
-      overflow-y: auto;
-      padding: 1rem;
-      border-radius: 10px;
-      background: #111;
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       margin-bottom: 1rem;
     }
 
-    .message {
-      margin: 1rem 0;
-      padding: 0.8rem 1rem;
-      border-radius: 12px;
-      max-width: 75%;
-      word-wrap: break-word;
+    .chat-header h3 {
+      margin: 0;
     }
 
-    .user {
-      background-color: #00ff88;
+    .chat-log {
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 1rem;
+      border-radius: 18px;
+      background: #04050a;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .message {
+      margin-bottom: 0.8rem;
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      max-width: 80%;
+      line-height: 1.5;
+    }
+
+    .message.user {
+      background: var(--accent);
       color: #000;
       margin-left: auto;
-      text-align: right;
     }
 
-    .ai {
-      background-color: #2a2a2a;
-      border: 1px solid #00ff88;
-      text-align: left;
+    .message.ai {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(57, 255, 20, 0.2);
     }
 
     .input-row {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0.5rem;
-  align-items: center;
-}
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+    }
 
-.input-row input {
-  flex: 1;
-  padding: 0.8rem;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  min-width: 0; /* important to prevent overflow */
-}
+    .input-row input {
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: #fff;
+      font-size: 1rem;
+    }
 
-.input-row button {
-  padding: 0.8rem 1rem;
-  background: #00ff88;
-  color: #000;
-  font-weight: bold;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 14px;
-      color: #888;
-      border-top: 1px solid #333;
-      margin-top: 3rem;
+    .input-row button {
+      border: none;
+      border-radius: 14px;
+      padding: 0.9rem 1.8rem;
+      background: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
     @media (max-width: 768px) {
       nav {
-        bottom: 0;
-        top: auto;
+        flex-wrap: wrap;
+        gap: 0.5rem;
       }
-      nav ul {
-        flex-direction: row;
-        justify-content: center;
+
+      .input-row {
+        grid-template-columns: 1fr;
       }
     }
-
-    @media (max-width: 480px) {
-  .input-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .input-row input,
-  .input-row button {
-    width: 100%;
-  }
-      }
   </style>
-  <meta name="google-site-verification" content="mazxvnU0eHQaitoSxtpQtK2RlxtVHLhjW2mLoCPMaaE" />
 </head>
 <body>
   <nav>
-    <div class="logo"><a href="index.html" style="color:#00ff88; font-weight: bold; font-family: 'Bebas Neue';">R X</a></div>
-    <ul>
-      <li><a href="index.html">About</a></li>
-      <li><a href="project.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="more.html">More</a></li>
-    </ul>
+    <div class="logo">RAYMOND</div>
+    <div>
+      <a href="index.html">About</a>
+      <a href="project.html">Projects</a>
+      <a href="contact.html">Contact</a>
+      <a href="more.html">More</a>
+    </div>
   </nav>
 
-  <div class="container">
-    <h1 style="color:#00ff88;" data-aos="fade-up">Welcome to the More Page <i class="ph-light ph-robot"></i></h1>
-    
-    <div class="chat-wrapper" data-aos="zoom-in">
-      <h2 style="color:#00ff88;">Ask Raymond's AI <i class="ph-light ph-robot"></i></h2>
+    <section class="hero">
+    <p class="text-xs text-gray-400 uppercase mb-3" style="letter-spacing:0.4em;">Personal AI experiments</p>
+    <h1>AI, automation, and creative tooling</h1>
+    <p>
+      Every experiment you see here was prototyped on nights and weekends with the same standards I bring to client work—performance, accessibility, and polished UX.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="primary">Explore builds</a>
+      <a href="#chat">Talk to the demo</a>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="section-title">
+      <p class="text-xs uppercase text-gray-400" style="letter-spacing:0.35em;">Recent work</p>
+      <h2>Fresh AI projects</h2>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="ScamGuard.jpg" alt="ScamGuard AI screenshot" />
+        <span>AI Monitoring</span>
+        <h3>ScamGuard AI</h3>
+        <p>Detect scam behavior from urls, images, and text with an observability feed for suspicious signals.</p>
+        <div class="project-meta">Next.js · Node.js · AI API · Supabase</div>
+        <div class="project-links">
+          <span style="opacity:0.6;">Coming soon</span>
+          <a href="https://github.com/raymond-williamsX/SCAM-GUARD-AI" target="_blank" rel="noreferrer">Code</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="MoodPix.jpg" alt="MoodPIx AI screenshot" />
+        <span>Creativity</span>
+        <h3>MoodPIx AI</h3>
+        <p>Generate captions and mood-based color palettes with AI and deliver them through a clean creator dashboard.</p>
+        <div class="project-meta">Next.js · Node.js · AI API · Firebase</div>
+        <div class="project-links">
+          <a href="https://moodpixai.netlify.app" target="_blank" rel="noreferrer">Live</a>
+          <a href="https://github.com/raymond-williamsX/MoodSnap-AI" target="_blank" rel="noreferrer">Code</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="PictureGenAI.jpg" alt="AI Image Generator screenshot" />
+        <span>Generative</span>
+        <h3>AI Image Generator</h3>
+        <p>Turn prompts into original artwork with a lightweight image generation playground that also records usage stats.</p>
+        <div class="project-meta">JavaScript · HTML · CSS · Node · AI API</div>
+        <div class="project-links">
+          <a href="https://masteryourtasks.netlify.app" target="_blank" rel="noreferrer">Live</a>
+          <a href="https://github.com/raymond-williamsX/Picture-Generating-AI" target="_blank" rel="noreferrer">Code</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="MoreAI.png" alt="Personal AI Chatbot screenshot" />
+        <span>Conversational</span>
+        <h3>Personal AI Chatbot</h3>
+        <p>Chat with a personalized AI that speaks in your style, backed by Node.js and modern prompt patterns.</p>
+        <div class="project-meta">HTML · CSS · JavaScript · AI API · Node</div>
+        <div class="project-links">
+          <a href="https://raymondstudio.dev/more" target="_blank" rel="noreferrer">Live</a>
+          <a href="https://github.com/raymond-williamsX/render" target="_blank" rel="noreferrer">Code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="chat" class="chat-section">
+    <div class="chat-card glass">
+      <div class="chat-header">
+        <i class="ph-light ph-robot text-2xl" style="color: var(--accent);"></i>
+        <div>
+          <p class="text-xs uppercase text-gray-400" style="letter-spacing:0.35em;">Live demo</p>
+          <h3>Ask Raymond's AI</h3>
+        </div>
+      </div>
       <div class="chat-log" id="chatLog"></div>
       <div class="input-row">
-        <input type="text" id="userInput" placeholder="Ask anything about Raymond..." />
+        <input id="userInput" type="text" placeholder="Ask anything about Raymond's work..." />
         <button onclick="askGemini()">Send</button>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer>
-    &copy; 2025 RaymondX. All Rights Reserved.
+  <footer style="text-align:center; padding:1.5rem 0; color:#71717f;">
+    © 2025 Raymond Iorliam. All rights reserved.
   </footer>
 
   <script>
     const chatLog = document.getElementById("chatLog");
     const input = document.getElementById("userInput");
-    // Trigger send on Enter key (Desktop)
-input.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    askGemini();
-  }
-});
 
-    async function askGemini() {
-      const question = input.value.trim();
-      if (!question) return;
-
-      // Add user's message
-      appendMessage(question, 'user');
-      input.value = "";
-
-      // Add thinking placeholder
-      const thinking = appendMessage("Thinking...", 'ai');
-
-      try {
-        const res = await fetch("https://render-q4hz.onrender.com/ask-gemini", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt: question })
-        });
-
-        const data = await res.json();
-        thinking.innerText = data.reply || "Sorry, I couldn't answer that.";
-      } catch (err) {
-        console.error(err);
-        thinking.innerText = "Something went wrong. Please try again later.";
-      }
-
-      chatLog.scrollTop = chatLog.scrollHeight;
-    }
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") askGemini();
+    });
 
     function appendMessage(text, type) {
       const div = document.createElement("div");
       div.className = `message ${type}`;
       div.innerText = text;
       chatLog.appendChild(div);
+      chatLog.scrollTop = chatLog.scrollHeight;
       return div;
     }
-  </script>
-  <!-- AOS JS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1000,
-    once: false, // animate every time
-  });
-</script>
 
+    async function askGemini() {
+      const question = input.value.trim();
+      if (!question) return;
+      appendMessage(question, 'user');
+      input.value = "";
+      const thinking = appendMessage("Thinking...", 'ai');
+      try {
+        const res = await fetch("https://render-q4hz.onrender.com/ask-gemini", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: question })
+        });
+        const data = await res.json();
+        thinking.innerText = data.reply || "Sorry, no answer.";
+      } catch (err) {
+        thinking.innerText = "Error. Try again later.";
+      }
+    }
+  </script>
 </body>
 </html>

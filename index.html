@@ -65,171 +65,349 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
     <style>
+        :root {
+            --bg: #03040c;
+            --card: rgba(14, 16, 28, 0.8);
+            --card-border: rgba(57, 255, 20, 0.35);
+            --accent: #39ff14;
+            --soft: rgba(255, 255, 255, 0.08);
+        }
+
         :where([class^="ri-"])::before {
             content: "\f3c2";
         }
-        
+
         * {
             box-sizing: border-box;
         }
-        
+
         body {
             margin: 0;
             padding: 0;
-            background: #000000;
-            color: #ffffff;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, rgba(57, 255, 20, 0.1), transparent 45%),
+                        linear-gradient(180deg, #03040c 0%, #010204 100%);
+            color: #f4f4f8;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
-        
+
         .orbitron {
             font-family: 'Orbitron', monospace;
         }
-        
+
         .digital-noise {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: -1;
         }
-        
-        .glow-green {
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
-        }
-        
-        .glow-green-strong {
-            box-shadow: 0 0 40px rgba(57, 255, 20, 0.8);
-        }
-        
+
         .glass {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
             backdrop-filter: blur(20px);
+        }
+
+        nav a {
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .nav-floating {
+            border-radius: 999px;
+            padding: 0.5rem 1.8rem;
+            background: linear-gradient(135deg, rgba(2, 3, 12, 0.9), rgba(12, 18, 32, 0.8));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(30px);
+        }
+
+        .hero {
+            padding: 6rem 2rem 5rem;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 3vw, 4rem);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-text p {
+            color: #d6d6dc;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .hero-cta a {
+            padding: 0.9rem 1.8rem;
+            border-radius: 999px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .hero-cta .primary {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .hero-cta .secondary {
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-stats {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .stat-badge {
+            padding: 0.85rem 1.1rem;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+        }
+
+        .hero-card {
+            position: relative;
+            border-radius: 24px;
+        }
+
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            pointer-events: none;
+        }
+
+        .hero-spotlight {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .hero-card h3 {
+            margin-bottom: 0.7rem;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 3vw, 3rem);
+        }
+
+        .section-heading p {
+            color: #c2c2c9;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .about-card {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+        }
+
+        .tech-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .tech-chip {
+            background: rgba(57, 255, 20, 0.08);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            border-radius: 999px;
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .project-card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 1.5rem;
+            background: linear-gradient(160deg, rgba(10,10,10,0.9), rgba(20,20,20,0.8));
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .project-card strong {
+            color: #fff;
+        }
+
+        .project-card a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .project-btn {
+            color: inherit;
+            border-radius: 12px;
+            padding: 0.7rem 1.2rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: border 0.3s ease;
+        }
+
+        .project-btn.primary {
+            background: #39ff14;
+            color: #000;
+            border-color: transparent;
+        }
+
+        .project-btn.secondary {
+            background: transparent;
+            color: #fff;
+        }
+
+        .project-btn i {
+            line-height: 0;
+        }
+
+        .testimonial-frame {
+            border-radius: 22px;
+            padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(145deg, rgba(57, 255, 20, 0.08), rgba(255, 255, 255, 0.02));
         }
-        
-        .gradient-line {
-            background: linear-gradient(90deg, transparent, #39FF14, transparent);
-            height: 1px;
-            animation: pulse 2s infinite;
+
+        .scroll-indicator {
+            animation: bounce 2s infinite;
         }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-        
+
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-18px); }
         }
-        
+
+        .typing-animation {
+            overflow: hidden;
+            border-right: 2px solid var(--accent);
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+            display: inline-block;
+        }
+
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
         }
-        
-        .typing-animation {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid #39FF14;
-            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
-        }
-        
+
         @keyframes blink {
             from, to { border-color: transparent; }
-            50% { border-color: #39FF14; }
+            50% { border-color: var(--accent); }
         }
-        
+
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #39FF14;
+            width: 3px;
+            height: 3px;
+            background: rgba(57, 255, 20, 0.7);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
-        
-        .skill-card {
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
-        
-        .skill-card:hover {
-            transform: rotateY(10deg) scale(1.05);
-        }
-        
-        .project-card {
-            transition: all 0.4s ease;
-            border: 1px solid rgba(57, 255, 20, 0.2);
-        }
-        
-        .project-card:hover {
-            border-color: #39FF14;
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
-            transform: translateY(-5px);
-        }
-        
-        .nav-floating {
-            backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(57, 255, 20, 0.2);
-        }
-        
-        .scroll-indicator {
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #39FF14;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
-        }
-        
-        .testimonial-frame {
-            border: 2px solid transparent;
-            background: linear-gradient(45deg, rgba(57, 255, 20, 0.2), transparent) border-box;
-            border-image: linear-gradient(45deg, #39FF14, transparent) 1;
-        }
-        
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease;
         }
-        
+
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
         .whatsapp-btn {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  background: #25d366;
-  color: white;
-  padding: 0.75rem 1rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
-  transition: transform 0.3s;
-}
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: linear-gradient(135deg, #25d366, #1ebe52);
+            color: #fff;
+            padding: 0.85rem 1.3rem;
+            border-radius: 999px;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
 
-.whatsapp-btn:hover {
-  transform: scale(1.05);
-}
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        }
+
+        @media (max-width: 640px) {
+            .hero-stats {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .project-card {
+                padding: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -265,51 +443,62 @@
                 <i class="ri-mail-line"></i>
             </a>
         </div>
-    </nav>
-    
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="particle" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
-        <div class="particle" style="top: 20%; right: 15%; animation-delay: 1s;"></div>
-        <div class="particle" style="bottom: 30%; left: 20%; animation-delay: 2s;"></div>
-        <div class="particle" style="bottom: 20%; right: 10%; animation-delay: 3s;"></div>
-        <div class="particle" style="top: 50%; left: 5%; animation-delay: 4s;"></div>
-        
-        <div class="text-center z-10 px-4 max-w-4xl mx-auto">
-            <div class="relative mb-8 inline-block">
-                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mx-auto relative">
-                    <img src="raymond_linkedin.jpg" 
-                         alt="Raymond Iorliam" 
-                         class="w-full h-full object-cover object-top">
-                    <div class="absolute inset-0 rounded-full border-4 border-primary glow-green-strong animate-pulse"></div>
+    </nav>    <section id="home" class="hero relative overflow-hidden">
+        <div class="particle" style="top: 5%; left: 12%; animation-delay: 0s;"></div>
+        <div class="particle" style="top: 25%; right: 18%; animation-delay: 0.8s;"></div>
+        <div class="particle" style="bottom: 15%; left: 18%; animation-delay: 1.6s;"></div>
+        <div class="particle" style="bottom: 8%; right: 10%; animation-delay: 2.4s;"></div>
+        <div class="particle" style="top: 55%; left: 4%; animation-delay: 3.2s;"></div>
+
+        <div class="hero-grid max-w-6xl mx-auto">
+            <div class="hero-text">
+                <p class="text-xs tracking-[0.4em] text-gray-400 uppercase mb-3">Full-stack & product-focused</p>
+                <h1 class="orbitron text-white">
+                    RAYMOND IORLIAM
+                </h1>
+                <div class="text-xl md:text-2xl lg:text-3xl text-accent typing-animation mb-4">
+                    Full-Stack Developer for modern web products
+                </div>
+                <p>
+                    I design and ship elegant, responsive web experiences that help founders and teams present their work with polish and reliability. The goal is always thoughtful UX, clean engineering, and an outcome that feels premium.
+                </p>
+
+                <div class="hero-cta mt-6">
+                    <a href="#projects" class="primary">See featured builds</a>
+                    <a href="Resume.docx" download class="secondary">Download resume</a>
+                </div>
+
+                <div class="hero-stats mt-6">
+                    <div class="stat-badge">
+                        5 product launches
+                    </div>
+                    <div class="stat-badge">
+                        9 client touch points
+                    </div>
+                    <div class="stat-badge">
+                        3+ years shipped
+                    </div>
                 </div>
             </div>
-            
-            <h1 class="orbitron text-4xl md:text-6xl lg:text-7xl font-black mb-4 text-white">
-                RAYMOND IORLIAM
-            </h1>
-            
-            <div class="text-xl md:text-2xl lg:text-3xl text-primary mb-6 typing-animation">
-                Full-Stack Developer for modern web products
-            </div>
-            
-            <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                I build fast, polished websites and web apps that help founders, teams, and businesses present their work clearly and ship with confidence.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#projects" class="bg-primary text-black px-8 py-4 !rounded-button font-semibold text-lg hover:glow-green-strong transition-all duration-300 whitespace-nowrap">
-                    View Selected Projects
-                </a>
-               <a href="Resume.docx" download class="border-2 border-primary text-primary px-8 py-4 !rounded-button font-semibold text-lg hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap inline-flex items-center justify-center">
-                    Download Resume
-                </a>
-                
+
+            <div class="hero-card glass hero-glow">
+                <p class="text-xs uppercase tracking-[0.5em] text-gray-400 mb-3">Trusted by teams</p>
+                <h3 class="text-2xl mb-1">Delivery focused</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    I partner with product leads and founders to turn rough ideas into structured experiences: wireframes, UI, code, QA. Every engagement tracks scope, deliverables, and launch readiness.
+                </p>
+                <div class="hero-spotlight mt-6 p-4 rounded-2xl border border-white/10">
+                    <p class="text-xs uppercase text-gray-400 mb-2">Current focus</p>
+                    <p class="text-lg font-semibold">React, Node.js, Tailwind, AI APIs, Supabase</p>
+                </div>
             </div>
         </div>
-        
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
-            <div class="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
-                <div class="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
+
+        <div class="absolute inset-x-0 bottom-10 flex justify-center">
+            <div class="scroll-indicator">
+                <div class="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
+                    <div class="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -529,7 +718,7 @@
                     </div>
                     
                     <div class="flex gap-4">
-                      <a href="https://adonisoftware.netlify.app" target="_blank" rel="noreferrer" class="flex-1 bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:glow-green transition-all duration-300 whitespace-nowrap text-center">
+                      <a href="https://adonisoftware.netlify.app" target="_blank" rel="noreferrer" class="project-btn primary">
                             <i class="ri-eye-line mr-2"></i>Live Demo
                         </a>
                         <a href="https://github.com/raymond-williamsX/adonis" target="_blank" rel="noreferrer" class="flex-1 border border-primary text-primary px-4 py-2 !rounded-button font-semibold hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap text-center">
@@ -559,7 +748,7 @@
                     </div>
                     
                     <div class="flex gap-4">
-                        <a href="https://sendoatelier.netlify.app" target="_blank" rel="noreferrer" class="flex-1 bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:glow-green transition-all duration-300 whitespace-nowrap text-center">
+                        <a href="https://sendoatelier.netlify.app" target="_blank" rel="noreferrer" class="project-btn primary">
                             <i class="ri-eye-line mr-2"></i>Live Demo
                         </a>
                         <a href="https://github.com/raymond-williamsX/E-commerce-task" target="_blank" rel="noreferrer" class="flex-1 border border-primary text-primary px-4 py-2 !rounded-button font-semibold hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap text-center">
@@ -590,11 +779,119 @@
                     </div>
                     
                     <div class="flex gap-4">
-                        <a href="https://newworldscience.netlify.app" target="_blank" rel="noreferrer" class="flex-1 bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:glow-green transition-all duration-300 whitespace-nowrap text-center">
+                        <a href="https://newworldscience.netlify.app" target="_blank" rel="noreferrer" class="project-btn primary">
                             <i class="ri-eye-line mr-2"></i>Live Demo
                         </a>
                         <a href="https://github.com/raymond-williamsX/Science-Blog" target="_blank" rel="noreferrer" class="flex-1 border border-primary text-primary px-4 py-2 !rounded-button font-semibold hover:bg-primary hover:text-black transition-all duration-300 whitespace-nowrap text-center">
                             <i class="ri-github-line mr-2"></i>Code
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-card glass p-6 rounded-2xl fade-in">
+                    <div class="relative mb-6 rounded-xl overflow-hidden">
+                        <img src="ScamGuard.jpg"
+                             alt="ScamGuard AI"
+                             class="w-full h-48 object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <h3 class="orbitron text-xl font-bold text-white mb-3">ScamGuard AI</h3>
+                    <p class="text-gray-300 mb-4">
+                        Monitor URLs, files, and text with AI signals to surface likely scams before they hit your users.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Next.js</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">AI API</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Supabase</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="project-btn secondary" style="opacity:0.6; cursor:not-allowed;">
+                            <i class="ri-eye-line"></i>Coming soon
+                        </span>
+                        <a href="https://github.com/raymond-williamsX/SCAM-GUARD-AI" target="_blank" rel="noreferrer" class="project-btn secondary">
+                            <i class="ri-github-line"></i>Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass p-6 rounded-2xl fade-in">
+                    <div class="relative mb-6 rounded-xl overflow-hidden">
+                        <img src="MoodPix.jpg"
+                             alt="MoodPIx AI"
+                             class="w-full h-48 object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <h3 class="orbitron text-xl font-bold text-white mb-3">MoodPIx AI</h3>
+                    <p class="text-gray-300 mb-4">
+                        Caption and mood insights for creators, combining image analysis with AI storytelling.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Next.js</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Firebase</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">AI API</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="https://moodpixai.netlify.app" target="_blank" rel="noreferrer" class="project-btn primary">
+                            <i class="ri-eye-line"></i>Live Demo
+                        </a>
+                        <a href="https://github.com/raymond-williamsX/MoodSnap-AI" target="_blank" rel="noreferrer" class="project-btn secondary">
+                            <i class="ri-github-line"></i>Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass p-6 rounded-2xl fade-in">
+                    <div class="relative mb-6 rounded-xl overflow-hidden">
+                        <img src="PictureGenAI.jpg"
+                             alt="AI Image Generator"
+                             class="w-full h-48 object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <h3 class="orbitron text-xl font-bold text-white mb-3">AI Image Generator</h3>
+                    <p class="text-gray-300 mb-4">
+                        Prompt-driven image creation with lightweight stats tracking for exploration experiments.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">HTML</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">CSS</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Node</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="https://masteryourtasks.netlify.app" target="_blank" rel="noreferrer" class="project-btn primary">
+                            <i class="ri-eye-line"></i>Live Demo
+                        </a>
+                        <a href="https://github.com/raymond-williamsX/Picture-Generating-AI" target="_blank" rel="noreferrer" class="project-btn secondary">
+                            <i class="ri-github-line"></i>Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass p-6 rounded-2xl fade-in">
+                    <div class="relative mb-6 rounded-xl overflow-hidden">
+                        <img src="MoreAI.png"
+                             alt="Personal AI Chatbot"
+                             class="w-full h-48 object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <h3 class="orbitron text-xl font-bold text-white mb-3">Personal AI Chatbot</h3>
+                    <p class="text-gray-300 mb-4">
+                        A conversational assistant tuned to Raymond's voice for quick info and ideation.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">HTML</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">CSS</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Node</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="https://raymondstudio.dev/more" target="_blank" rel="noreferrer" class="project-btn primary">
+                            <i class="ri-eye-line"></i>Live Demo
+                        </a>
+                        <a href="https://github.com/raymond-williamsX/render" target="_blank" rel="noreferrer" class="project-btn secondary">
+                            <i class="ri-github-line"></i>Code
                         </a>
                     </div>
                 </div>
@@ -847,4 +1144,5 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
+
 
