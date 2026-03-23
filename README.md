@@ -21,7 +21,7 @@ Portfolio site for Raymond Iorliam, a full-stack developer focused on polished f
 
 A marketing website for a software company with clearer messaging, improved structure, and a stronger presentation layer.
 
-- Live: https://adonisoftware.netlify.app
+- Live: https://adonisoftware.tech
 - Code: https://github.com/raymond-williamsX/adonis
 
 ### E-Commerce Website
