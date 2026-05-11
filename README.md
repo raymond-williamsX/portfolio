@@ -40,9 +40,9 @@ A content-focused science platform with a visual editorial layout and a cleaner 
 
 ## Contact
 
-- Email: msuraymond@gmail.com
+- Email: contact@raymondstudio.dev
 - WhatsApp: https://wa.link/ejtszu
 
 ## Resume
 
-- Download: https://raymond-studio.netlify.app/raymondcv.pdf
+- Download: https://raymondstudio.dev/raymondcv.pdf
